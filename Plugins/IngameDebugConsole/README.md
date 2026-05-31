@@ -114,11 +114,11 @@ using IngameDebugConsole;
 
 public class TestScript : MonoBehaviour
 {
-	[ConsoleMethod( "cube", "Creates a cube at specified position" )]
-	public static void CreateCubeAt( Vector3 position )
-	{
-		GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
-	}
+    [ConsoleMethod( "cube", "Creates a cube at specified position" )]
+    public static void CreateCubeAt( Vector3 position )
+    {
+        GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
+    }
 }
 ```
 
@@ -132,30 +132,30 @@ using IngameDebugConsole;
 
 public class TestScript : MonoBehaviour
 {
-	void Start()
-	{
-		DebugLogConsole.AddCommand( "destroy", "Destroys " + name, Destroy );
-		DebugLogConsole.AddCommand<Vector3>( "cube", "Creates a cube at specified position", CreateCubeAt );
-		DebugLogConsole.AddCommand<string, GameObject>( "child", "Creates a new child object under " + name, AddChild );
-	}
+    void Start()
+    {
+        DebugLogConsole.AddCommand( "destroy", "Destroys " + name, Destroy );
+        DebugLogConsole.AddCommand<Vector3>( "cube", "Creates a cube at specified position", CreateCubeAt );
+        DebugLogConsole.AddCommand<string, GameObject>( "child", "Creates a new child object under " + name, AddChild );
+    }
 
-	void Destroy()
-	{
-		Destroy( gameObject );
-	}
+    void Destroy()
+    {
+        Destroy( gameObject );
+    }
 
-	public static void CreateCubeAt( Vector3 position )
-	{
-		GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
-	}
+    public static void CreateCubeAt( Vector3 position )
+    {
+        GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
+    }
 
-	private GameObject AddChild( string name )
-	{
-		GameObject child = new GameObject( name );
-		child.transform.SetParent( transform );
+    private GameObject AddChild( string name )
+    {
+        GameObject child = new GameObject( name );
+        child.transform.SetParent( transform );
 
-		return child;
-	}
+        return child;
+    }
 }
 ```
 
@@ -169,15 +169,15 @@ using IngameDebugConsole;
 
 public class TestScript : MonoBehaviour
 {
-	void Start()
-	{
-		DebugLogConsole.AddCommandStatic( "cube", "Creates a cube at specified position", "CreateCubeAt", typeof( TestScript ) );
-	}
-	
-	public static void CreateCubeAt( Vector3 position )
-	{
-		GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
-	}
+    void Start()
+    {
+        DebugLogConsole.AddCommandStatic( "cube", "Creates a cube at specified position", "CreateCubeAt", typeof( TestScript ) );
+    }
+    
+    public static void CreateCubeAt( Vector3 position )
+    {
+        GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
+    }
 }
 ```
 
@@ -191,15 +191,15 @@ using IngameDebugConsole;
 
 public class TestScript : MonoBehaviour
 {
-	void Start()
-	{
-		DebugLogConsole.AddCommandInstance( "cube", "Creates a cube at specified position", "CreateCubeAt", this );
-	}
-	
-	void CreateCubeAt( Vector3 position )
-	{
-		GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
-	}
+    void Start()
+    {
+        DebugLogConsole.AddCommandInstance( "cube", "Creates a cube at specified position", "CreateCubeAt", this );
+    }
+    
+    void CreateCubeAt( Vector3 position )
+    {
+        GameObject.CreatePrimitive( PrimitiveType.Cube ).transform.position = position;
+    }
 }
 ```
 
@@ -221,50 +221,50 @@ using IngameDebugConsole;
 
 public class TestScript : MonoBehaviour
 {
-	public class Person
-	{
-		public string Name;
-		public int Age;
-	}
+    public class Person
+    {
+        public string Name;
+        public int Age;
+    }
 
-	void Start()
-	{
-		// Person parameters can now be used in commands, e.g. ('John Doe' 18)
-		DebugLogConsole.AddCustomParameterType( typeof( Person ), ParsePerson );
-	}
-	
-	private static bool ParsePerson( string input, out object output )
-	{
-		// Split the input
-		// This will turn ('John Doe' 18) into 2 strings: "John Doe" (without quotes) and "18" (without quotes)
-		List<string> inputSplit = new List<string>( 2 );
-		DebugLogConsole.FetchArgumentsFromCommand( input, inputSplit );
+    void Start()
+    {
+        // Person parameters can now be used in commands, e.g. ('John Doe' 18)
+        DebugLogConsole.AddCustomParameterType( typeof( Person ), ParsePerson );
+    }
+    
+    private static bool ParsePerson( string input, out object output )
+    {
+        // Split the input
+        // This will turn ('John Doe' 18) into 2 strings: "John Doe" (without quotes) and "18" (without quotes)
+        List<string> inputSplit = new List<string>( 2 );
+        DebugLogConsole.FetchArgumentsFromCommand( input, inputSplit );
 
-		// We need 2 parameters: Name and Age
-		if( inputSplit.Count != 2 )
-		{
-			output = null;
-			return false;
-		}
+        // We need 2 parameters: Name and Age
+        if( inputSplit.Count != 2 )
+        {
+            output = null;
+            return false;
+        }
 
-		// Try parsing the age
-		object age;
-		if( !DebugLogConsole.ParseInt( inputSplit[1], out age ) )
-		{
-			output = null;
-			return false;
-		}
+        // Try parsing the age
+        object age;
+        if( !DebugLogConsole.ParseInt( inputSplit[1], out age ) )
+        {
+            output = null;
+            return false;
+        }
 
-		// Create the resulting object and assign it to output
-		output = new Person()
-		{
-			Name = inputSplit[0],
-			Age = (int) age
-		};
+        // Create the resulting object and assign it to output
+        output = new Person()
+        {
+            Name = inputSplit[0],
+            Age = (int) age
+        };
 
-		// Successfully parsed!
-		return true;
-	}
+        // Successfully parsed!
+        return true;
+    }
 }
 ```
 
@@ -278,11 +278,11 @@ using IngameDebugConsole;
 
 public class TestScript : MonoBehaviour
 {
-	[ConsoleCustomTypeParser( typeof( Person ) )]
-	public static bool ParsePerson( string input, out object output )
-	{
-		// Same as above...
-	}
+    [ConsoleCustomTypeParser( typeof( Person ) )]
+    public static bool ParsePerson( string input, out object output )
+    {
+        // Same as above...
+    }
 }
 ```
 

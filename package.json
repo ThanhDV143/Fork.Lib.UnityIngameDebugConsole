@@ -1,5 +1,5 @@
 {
-  "name": "com.yasirkula.ingamedebugconsole",
+  "name": "thanhdv.fork.yasirkula.ingamedebugconsole",
   "displayName": "In-game Debug Console",
   "version": "1.8.7",
   "author": {
@@ -7,9 +7,11 @@
     "email": "yasirkula@gmail.com",
     "url": "https://github.com/yasirkula"
   },
-  "documentationUrl": "https://github.com/yasirkula/UnityIngameDebugConsole",
-  "changelogUrl": "https://github.com/yasirkula/UnityIngameDebugConsole/releases",
-  "licensesUrl": "https://github.com/yasirkula/UnityIngameDebugConsole/blob/master/LICENSE.txt",
+  "documentationUrl": "https://github.com/ThanhDV143/Fork.Lib.UnityIngameDebugConsole",
+  "licensesUrl": "https://github.com/ThanhDV143/Fork.Lib.UnityIngameDebugConsole/blob/master/LICENSE.txt",
   "description": "This asset helps you see debug messages (logs, warnings, errors, exceptions) runtime in a build (also assertions in editor) and execute commands using its built-in console. It also supports logging logcat messages to the console on Android platform.",
-  "hideInEditor": false
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://upm.thanhdv.com/"
+  }
 }
