@@ -7,6 +7,9 @@
     "email": "yasirkula@gmail.com",
     "url": "https://github.com/yasirkula"
   },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.9"
+  },
   "documentationUrl": "https://github.com/ThanhDV143/Fork.Lib.UnityIngameDebugConsole",
   "licensesUrl": "https://github.com/ThanhDV143/Fork.Lib.UnityIngameDebugConsole/blob/master/LICENSE.txt",
   "description": "This asset helps you see debug messages (logs, warnings, errors, exceptions) runtime in a build (also assertions in editor) and execute commands using its built-in console. It also supports logging logcat messages to the console on Android platform.",
